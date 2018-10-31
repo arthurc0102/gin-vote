@@ -13,8 +13,7 @@
 gin-vote
 
 # Vendor
-vendor/*
-!vendor/.gitkeep
+vendor
 
 # Database
 *.sqlite3
