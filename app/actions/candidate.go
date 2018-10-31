@@ -91,7 +91,7 @@ func DeleteCandidate(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"success": true})
+	c.JSON(http.StatusNoContent, "")
 }
 
 // VoteCandidate vote candidate
