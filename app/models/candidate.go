@@ -17,21 +17,19 @@ type Candidate struct {
 }
 
 // Save model
-func (model *Candidate) Save() error {
-	if err := model.Validate(); err != nil {
-		return err
+func (model *Candidate) Save(check ...bool) error {
+	if len(check) == 0 || !check[0] {
+		model.Conform()
+		if err := model.Validate(); err != nil {
+			return err
+		}
+	}
+
+	if db.Connection.NewRecord(model) {
+		return db.Connection.Create(model).Error
 	}
 
 	return db.Connection.Save(model).Error
-}
-
-// Create model
-func (model *Candidate) Create() error {
-	if err := model.Validate(); err != nil {
-		return err
-	}
-
-	return db.Connection.Create(model).Error
 }
 
 // Delete model
@@ -45,6 +43,10 @@ func (model *Candidate) Delete() error {
 
 // Validate model
 func (model *Candidate) Validate() error {
-	conform.Strings(model)
 	return binding.Validator.ValidateStruct(model)
+}
+
+// Conform model's string
+func (model *Candidate) Conform() {
+	conform.Strings(model)
 }
