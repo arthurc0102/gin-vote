@@ -74,7 +74,7 @@ func UpdateCandidate(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, candidate)
+	c.JSON(http.StatusOK, candidate)
 }
 
 // DeleteCandidate delete candidate
