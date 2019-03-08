@@ -8,6 +8,7 @@
     "gorm",
     "jinzhu",
     "joho",
+    "serializer",
     "serializers"
   ]
 }
