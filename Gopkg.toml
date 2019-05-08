@@ -56,3 +56,6 @@
 [[constraint]]
   name = "github.com/gin-contrib/cors"
   version = "1.2.0"
+
+[metadata.heroku]
+  root-package = "github.com/arthurc0102/gin-vote"
