@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/arthurc0102/gin-vote/config"
 	"github.com/arthurc0102/gin-vote/db"
 	"github.com/arthurc0102/gin-vote/db/migrate"
@@ -11,7 +13,13 @@ import (
 func main() {
 	server := gin.Default()
 
-	server.Use(cors.Default())
+	server.Use(cors.New(cors.Config{
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type"},
+		AllowAllOrigins:  true,
+		AllowCredentials: false,
+		MaxAge:           12 * time.Hour,
+	}))
 
 	config.Load()
 	config.Static(server)
